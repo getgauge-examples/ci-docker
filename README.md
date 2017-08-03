@@ -1,2 +1,2 @@
 # docker
-Set up Gauge in docker
+Set up Gauge CI using docker

@@ -1,0 +1,27 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+before_install:
+- docker pull buildpack-deps:jessie
+- docker run apt-get update \
+  && apt-get install -y \
+    git mercurial xvfb \
+    locales sudo openssh-client ca-certificates tar gzip parallel \
+    net-tools netcat unzip zip bzip2
+- docker env GAUGE_VERSION 0.9.0
+- docker env VARIABLE 7
+- docker env GAUGE_FILE_NAME "gauge-$GAUGE_VERSION-linux.x86_64.zip"
+- docker env OUTPUT_DIR "$HOME/gauge_$GAUGE_VERSION"
+- docker run wget "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_FILE_NAME"
+- docker run unzip $GAUGE_FILE_NAME -d $OUTPUT_DIR
+- docker run chmod 755 install.sh
+- docker run GAUGE_PREFIX=~/.gauge GAUGE_PLUGINS=ruby,html-report ./install.sh
+- docker run source ~/.profile
+- docker run apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-keys 023EDB0B
+
+script:
+- gauge specs
