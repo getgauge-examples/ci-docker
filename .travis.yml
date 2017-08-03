@@ -19,7 +19,7 @@ before_install:
 - docker run wget "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_FILE_NAME"
 - docker run unzip $GAUGE_FILE_NAME -d $OUTPUT_DIR
 - docker run chmod 755 install.sh
-- docker run GAUGE_PREFIX=~/.gauge GAUGE_PLUGINS=ruby,html-report ./install.sh
+- docker run GAUGE_PREFIX=~/.gauge GAUGE_PLUGINS=java ./install.sh
 - docker run source ~/.profile
 - docker run apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-keys 023EDB0B
 
