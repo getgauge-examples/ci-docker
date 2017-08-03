@@ -1,0 +1,33 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build --rm=false -t buildpack-deps:jessie.
+
+test:
+  override:
+    - docker apt-get update
+    - docker apt-get install -y
+    - docker git mercurial xvfb
+    - docker locales sudo openssh-client ca-certificates tar gzip parallel
+    - docker net-tools netcat unzip zip bzip2
+    - docker env GAUGE_VERSION 0.9.0
+    - docker env VARIABLE 7
+    - docker env GAUGE_FILE_NAME "gauge-$GAUGE_VERSION-linux.x86_64.zip"
+    - docker env OUTPUT_DIR "$HOME/gauge_$GAUGE_VERSION"
+    - docker run wget "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_FILE_NAME"
+    - docker run unzip $GAUGE_FILE_NAME -d $OUTPUT_DIR
+    - docker run chmod 755 install.sh
+    - docker run GAUGE_PREFIX=~/.gauge GAUGE_PLUGINS=java ./install.sh
+    - docker run source ~/.profile
+    - docker run apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-keys 023EDB0B
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push circleci/elasticsearch

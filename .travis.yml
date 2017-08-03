@@ -7,11 +7,11 @@ services:
 
 before_install:
 - docker pull buildpack-deps:jessie
-- docker run apt-get update \
-  && apt-get install -y \
-    git mercurial xvfb \
-    locales sudo openssh-client ca-certificates tar gzip parallel \
-    net-tools netcat unzip zip bzip2
+- docker apt-get update
+- docker apt-get install -y
+- docker git mercurial xvfb
+- docker locales sudo openssh-client ca-certificates tar gzip parallel
+- docker net-tools netcat unzip zip bzip2
 - docker env GAUGE_VERSION 0.9.0
 - docker env VARIABLE 7
 - docker env GAUGE_FILE_NAME "gauge-$GAUGE_VERSION-linux.x86_64.zip"
