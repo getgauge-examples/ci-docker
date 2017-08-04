@@ -8,10 +8,10 @@ RUN apt-get update \
 
 ENV GAUGE_VERSION 0.9.0
 ENV VARIABLE 7
-ENV GAUGE_FILE_NAME "gauge-$GAUGE_VERSION-linux.x86_64.zip"
+ENV GAUGE_FILE_NAME "gauge-0.9.1.nightly-2017-08-03-linux.x86_64.zip"
 ENV OUTPUT_DIR "$HOME/gauge_$GAUGE_VERSION"
 
-RUN wget "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_FILE_NAME"
+RUN wget "https://bintray.com/gauge/Gauge/download_file?file_path=linux%2Fgauge-0.9.1.nightly-2017-08-03-linux.x86_64.zip"
 RUN unzip $GAUGE_FILE_NAME -d $OUTPUT_DIR
 
 WORKDIR $OUTPUT_DIR
