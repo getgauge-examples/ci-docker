@@ -5,5 +5,8 @@ language: java
 services:
   - docker
 
-script:
+install:
   - docker build .
+
+script:
+  - gauge run specs
