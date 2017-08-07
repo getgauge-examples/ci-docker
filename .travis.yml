@@ -6,7 +6,7 @@ services:
   - docker
 
 install:
-  - docker build . -t gaugeDocker
+  - docker build . -t test
 
 script:
-  - docker run -v `pwd`/$TRAVIS_BUILD_DIR:/$TRAVIS_BUILD_DIR -w="/$TRAVIS_BUILD_DIR" gaugeDocker gauge run specs
+  - docker run -v `pwd`/$TRAVIS_BUILD_DIR:/$TRAVIS_BUILD_DIR -w="/$TRAVIS_BUILD_DIR" test gauge run specs
