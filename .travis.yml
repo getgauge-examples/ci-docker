@@ -7,6 +7,7 @@ services:
 
 install:
   - docker build . -t test
+  # for gauge zip installation use Dockerfile_zip
 
 script:
   - docker run -v `pwd`:/dest -w="/dest" test gauge run specs
