@@ -2,6 +2,7 @@ FROM ubuntu
 
 # Install Java.
 RUN apt-get update
+RUN apt-get -y install sudo
 RUN apt-get -q -y install default-jdk
 
 #Install gauge
