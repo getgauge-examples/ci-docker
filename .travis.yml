@@ -5,5 +5,8 @@ language: java
 services:
   - docker
 
+install:
+  - docker build . -t boo
+
 script:
-  - docker build .
+  - docker run -v `pwd`/boo:/boo -w="/boo" boo gauge run specs
