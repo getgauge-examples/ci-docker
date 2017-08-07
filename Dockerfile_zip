@@ -26,4 +26,4 @@ RUN unzip $GAUGE_FILE_NAME -d $OUTPUT_DIR
 RUN chmod 755 install.sh
 RUN GAUGE_PLUGINS=java ./install.sh
 
-ENV PATH=$HOHE/.gauge/bin:$PATH
+ENV PATH=$HOME/.gauge/bin:$PATH
