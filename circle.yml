@@ -5,8 +5,8 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build .
+    - docker build -t test --file `pwd`/Dockerfile_zip `pwd`
 
 test:
   override:
-    - gauge run specs
+      - docker run -v `pwd`:/dest -w="/dest" test gauge run specs
