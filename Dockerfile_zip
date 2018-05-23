@@ -9,6 +9,7 @@ RUN apt-get update && \
       apt-get -y install unzip && \
       apt-get -y install sudo && \
       apt-get -y install curl && \
+      apt-get -y install gpa && \
       apt-get install apt-transport-https -y
 
 ADD ./install_latest.sh install_latest.sh
