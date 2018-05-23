@@ -4,6 +4,7 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get -y install sudo
 RUN apt-get -q -y install default-jdk
+RUN apt-get -y install gpa
 RUN apt-get install apt-transport-https -y
 
 #Install gauge
